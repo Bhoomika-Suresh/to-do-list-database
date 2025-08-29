@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h2>To-Do List</h2>
+  </header>
+
+  <!-- Add Task Form -->
+  <form action="/add" method="POST">
+    <input type="text" name="task" placeholder="Enter new task..." required>
+    <button type="submit" class="add">Add</button>
+  </form>
+
+  <!-- Show Tasks -->
+  <ul>
+    <% tasks.forEach(task => { %>
+      <li>
+        <span><%= task.task %></span>
+        <div>
+          <!-- Edit button -->
+          <form action="/edit/<%= task.id %>" method="POST" style="display:inline;">
+            <button type="submit" class="edit">Edit</button>
+          </form>
+          <!-- Delete button -->
+          <form action="/delete/<%= task.id %>" method="POST" style="display:inline;">
+            <button type="submit" class="delete">Delete</button>
+          </form>
+        </div>
+      </li>
+    <% }) %>
+  </ul>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 To-Do List App</p>
+  </footer>
+</body>
+</html>
