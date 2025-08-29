@@ -1,45 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To-Do List</title>
-  <link rel="stylesheet" href="/style.css">
-</head>
-<body>
-  <!-- Header -->
-  <header>
-    <h2>To-Do List</h2>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header>
+      <h2>To-Do List</h2>
+    </header>
 
-  <!-- Add Task Form -->
-  <form action="/add" method="POST">
-    <input type="text" name="task" placeholder="Enter new task..." required>
-    <button type="submit" class="add">Add</button>
-  </form>
+    <!-- Add Task -->
+    <form action="/add" method="POST" class="add-form">
+      <input type="text" name="task" placeholder="Enter new task..." required />
+      <button type="submit" class="add">Add</button>
+    </form>
 
-  <!-- Show Tasks -->
-  <ul>
-    <% tasks.forEach(task => { %>
-      <li>
-        <span><%= task.task %></span>
-        <div>
-          <!-- Edit button -->
-          <form action="/edit/<%= task.id %>" method="POST" style="display:inline;">
-            <button type="submit" class="edit">Edit</button>
-          </form>
-          <!-- Delete button -->
-          <form action="/delete/<%= task.id %>" method="POST" style="display:inline;">
-            <button type="submit" class="delete">Delete</button>
-          </form>
-        </div>
-      </li>
-    <% }) %>
-  </ul>
+    <!-- Task List -->
+    <ul class="tasks">
+      <!-- Display tasks only if available -->
+      <% if (locals.tasks && locals.tasks.length > 0) { %>
+      <ul>
+        <% tasks.forEach((t, i) => { %>
+        <li><%= t %></li>
+        <% }) %>
+      </ul>
+      <% } else { %>
+      <p>No tasks yet. Please add your first task!</p>
+      <% } %>
+    </ul>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 To-Do List App</p>
-  </footer>
-</body>
+    <footer>
+      <p>© 2025 To-Do List</p>
+    </footer>
+  </body>
 </html>
